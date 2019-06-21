@@ -1,0 +1,46 @@
+{% extends '../base.html' %}
+{% load mathfilters %}
+
+{% block csslink %}
+<link href="/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+<div id="guestbook">
+	<form action="/guestbook/add" method="post">{% csrf_token%}
+		<input type="hidden" name="a" value="insert">
+		<table>
+			<tr>
+				<td>이름</td><td><input type="text" name="name"></td>
+				<td>비밀번호</td><td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td colspan=4><textarea name="contents" id="content"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+			</tr>
+		</table>
+	</form>
+	<ul>
+		<!--{{guestbooklist | length}} : {{guestbooklist.count | add:1 | sub:2}}-->
+		{% for guestbook in guestbooklist %}
+		<li>
+			<table>
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{guestbook.name}}</td>
+					<td>{{guestbook.joindate | date:'Y-m-d H:i:s'}}</td>
+					<td><a href="/guestbook/deleteform/{{guestbook.id}}">삭제</a></td>
+				</tr>
+				<tr>
+					<td colspan=4>
+					{{guestbook.contents}}
+					</td>
+				</tr>
+			</table>
+			<br>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}
