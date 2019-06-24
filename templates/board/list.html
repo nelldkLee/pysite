@@ -22,7 +22,7 @@
 			{% for board in boardlist %}
 			<tr>
 				<td>{{forloop.counter}}</td>
-				<td><a href="/board/view">{{board.title}}</a></td>
+				<td><a href="/board/view{{pg.url}}&id={{board.id}}">{{board.title}}</a></td>
 				<td>{{board.user.name}}</td>
 				<td>{{board.hit}}</td>
 				<td>{{board.regdate}}</td>
@@ -38,25 +38,10 @@
 
 				<li {%if pg.page == idx %}class="selected"{%endif %}><a href="/board/list?page={{idx}}&perpagesize={{pg.perpagesize}}">{{idx}}</a></li>
 				{%endfor %}
-				<li><a href="/board/list?page={{pg.nextpage}}&perpagesize={{pg.perpagesize}}">▶</a></li>
+				{%if pg.next %}<li><a href="/board/list?page={{pg.nextpage}}&perpagesize={{pg.perpagesize}}">▶</a></li>{%endif %}
 			</ul>
 		</div>
-<!--		<div class="pagination">-->
-<!--						<c:if test="${pageMaker.prev}">-->
-<!--							<a href="/board/list?page=${pageMaer.startPage-1}"-->
-<!--								class="previous">Prev</a>-->
-<!--						</c:if>-->
 
-<!--						<c:forEach begin="${pageMaker.startPage}"-->
-<!--							end="${pageMaker.endPage}" var="idx">-->
-<!--							<a href="/board/list?page=${idx}"-->
-<!--								class="page <c:if test="${pageMaker.cri.page == idx}">active</c:if>">${idx}</a>-->
-<!--						</c:forEach>-->
-<!--						<c:if test="${pageMaker.next}">-->
-<!--							<a href="/board/list?page=${pageMaker.endPage +1}" class="next">Next</a>-->
-<!--						</c:if>-->
-<!--					</div>-->
-		<!-- pager 추가 -->
 		<div class="bottom">
 			<a href="/board/writeform" id="new-book">글쓰기</a>
 		</div>

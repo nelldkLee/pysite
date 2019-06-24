@@ -7,8 +7,10 @@
 {% block content %}
 <div id="board">
 	<form class="board-form" method="post" action="/board/write">{%csrf_token%}
-		<input type = "hidden" name = "a" value="write">
 		<input type = "hidden" name = "user_id" value="{{request.session.authuser.id}}">
+		<input type = "hidden" name = "groupno" value="{{groupno}}">
+		<input type = "hidden" name = "orderno" value="{{orderno}}">
+		<input type = "hidden" name = "depth" value="{{depth}}">
 		<table class="tbl-ex">
 			<tr>
 				<th colspan="2">글쓰기</th>
@@ -25,7 +27,7 @@
 			</tr>
 		</table>
 		<div class="bottom">
-			<a href="/board">취소</a>
+			<a href="/board/list">취소</a>
 			<input type="submit" value="등록">
 		</div>
 	</form>

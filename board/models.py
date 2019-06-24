@@ -10,6 +10,9 @@ class Board(models.Model):
     hit = models.IntegerField(default=0)
     regdate = models.DateTimeField(auto_now=True)
     groupno = models.IntegerField(default=0)
-    operderno = models.IntegerField(default=0)
+    orderno = models.IntegerField(default=0)
     depth = models.IntegerField(default=0)
     user = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Board({self.title}, {self.content}, {self.hit}, {self.regdate}, {self.groupno}, {self.operderno}, {self.depth}, {self.user})'

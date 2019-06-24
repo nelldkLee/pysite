@@ -21,6 +21,7 @@ class Pagination:
         self.prev = False if self.startpage is 1 else True
         self.next = False if self.endpage * perpagesize < totalcount else True
         self.range = range(self.startpage, self.endpage + 1)
+        self.seturl()
     def prev(self):
         return self.prev
 
@@ -35,15 +36,9 @@ class Pagination:
     def nextpage(self):
         return self.endpage + 1
 
-
-# this.endPage = (int) (Math.ceil(cri.getPage() / 10.0) * 10);
-# 		this.startPage = (endPage - 10) + 1;
-# 		int tempEnd = (int) (Math.ceil(totalCount / pagePerCount));
-# 		if(endPage > tempEnd) {
-# 			this.endPage = tempEnd;
-# 		}
-# 		this.prev = startPage != 1 ? true:false;
-# 		this.next = endPage * 10 < totalCount ? true:false;
+    def seturl(self):
+        self.url = ("?page=" + str(self.page) + "&perpagesize=" + str(self.perpagesize))
+        print(self.url)
 
 if __name__ == '__main__':
     pagenation = Pagination(6,10,999)

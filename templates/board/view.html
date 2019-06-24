@@ -12,22 +12,21 @@
 		</tr>
 		<tr>
 			<td class="label">제목</td>
-			<td>제목입니다.</td>
+			<td>{{board.title}}</td>
 		</tr>
 		<tr>
 			<td class="label">내용</td>
 			<td>
 				<div class="view-content">
-					내용 1입니다.<br>
-					내용 2입니다.<br>
-					내용 3입니다.
+					{{board.content}}
 				</div>
 			</td>
 		</tr>
 	</table>
 	<div class="bottom">
-		<a href="">글목록</a>
-		<a href="">글수정</a>
+		<a href="/board/list{{pg.url }}&groupno={{board.groupno }}&orderno={{board.orderno }}&depth={{board.depth }}">답글작성</a>
+		<a href="/board/list{{pg.url }}">글목록</a>
+		{%if board.user.id == request.session.authuser.id%}<a href="/board/modifyform?id={{board.id}}">글수정</a>{% endif%}
 	</div>
 </div>
 {% endblock %}
