@@ -19,7 +19,7 @@ class Pagination:
         if self.endpage * perpagesize > totalcount:
             self.endpage = ceil(totalcount / perpagesize)
         self.prev = False if self.startpage is 1 else True
-        self.next = False if self.endpage * perpagesize < totalcount else True
+        self.next = False if self.endpage * perpagesize <= totalcount else True
         self.range = range(self.startpage, self.endpage + 1)
         self.seturl()
     def prev(self):

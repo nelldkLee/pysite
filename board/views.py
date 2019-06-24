@@ -60,7 +60,12 @@ def writeform(request):
 
 def write(request):
     board = __parameterhandler__(request.POST, Board())
-    Board.objects.filter(id=board.id).filter(groupno=board.groupno).filter(orderno__gte=board.orderno).update(orderno=F('orderno') + 1)
+    print('test')
+    print(board.id)
+    print(board)
+
+    if board.id is not None:
+        Board.objects.filter(id=board.id).filter(groupno=board.groupno).filter(orderno__gte=board.orderno).update(orderno=F('orderno') + 1)
     board.save()
     return HttpResponseRedirect('/')
 

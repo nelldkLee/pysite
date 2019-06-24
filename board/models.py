@@ -15,4 +15,4 @@ class Board(models.Model):
     user = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Board({self.title}, {self.content}, {self.hit}, {self.regdate}, {self.groupno}, {self.operderno}, {self.depth}, {self.user})'
+        return f'Board({self.title}, {self.content}, {self.hit}, {self.regdate}, {self.groupno}, {self.orderno}, {self.depth}, {self.user})'
