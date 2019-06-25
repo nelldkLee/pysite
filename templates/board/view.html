@@ -24,9 +24,9 @@
 		</tr>
 	</table>
 	<div class="bottom">
-		<a href="/board/list{{pg.url }}&groupno={{board.groupno }}&orderno={{board.orderno }}&depth={{board.depth }}">답글작성</a>
+		<a href="/board/writeform{{pg.url }}&board_id={{board.board_id}}">답글작성</a>
 		<a href="/board/list{{pg.url }}">글목록</a>
-		{%if board.user.id == request.session.authuser.id%}<a href="/board/modifyform?id={{board.id}}">글수정</a>{% endif%}
+		{%if board.user.id == request.session.authuser.id%}<a href="/board/modifyform?board_id={{board.board_id}}">글수정</a>{% endif%}
 	</div>
 </div>
 {% endblock %}

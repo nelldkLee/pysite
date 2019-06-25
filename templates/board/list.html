@@ -1,4 +1,5 @@
 {% extends '../base.html' %}
+{% load mathfilters %}
 
 {% block csslink %}
 <link href="/assets/css/board.css" rel="stylesheet" type="text/css">
@@ -22,7 +23,12 @@
 			{% for board in boardlist %}
 			<tr>
 				<td>{{forloop.counter}}</td>
-				<td><a href="/board/view{{pg.url}}&id={{board.id}}">{{board.title}}</a></td>
+				<td style="text-align:left;">
+					{%if board.depth > 0 %}
+						<img src="/assets/images/reply.png" style="margin-left:{{board.depth|mul:20}}px">
+					{%endif %}
+					<a href="/board/view{{pg.url}}&board_id={{board.board_id}}">{{board.title}}</a>
+				</td>
 				<td>{{board.user.name}}</td>
 				<td>{{board.hit}}</td>
 				<td>{{board.regdate}}</td>
